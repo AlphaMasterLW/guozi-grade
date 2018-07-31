@@ -1,0 +1,48 @@
+body {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.modal-backdrop {
+    background-color: transparent;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+iframe {
+    display: block;
+    border: 0;
+}
+
+.page-content {
+    min-height: 700px;
+}
+
+.page-breadcrumb .breadcrumb {
+    margin-bottom: 0;
+}
+
+.page-main {
+    padding: 10px;
+}
+
+.maint {
+    margin-bottom: 10px;
+}
+
+.table-list{
+    margin-bottom: 20px;
+}
+
+.table-list th,
+.table-list td {
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle !important;
+}
+
+.table-list .form-group{
+    margin-bottom: 0;
+}

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>互评分数表</title>
+	<link rel="shortcut icon" href="/static/images/common/favicon.ico">
+	<link href="/static/css/common/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/common/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/css/common/iziToast.min.css" rel="stylesheet">
+	<link href="/static/css/score_hpb.css" rel="stylesheet">
+	<script src="/static/js/common/jquery.min.js"></script>
+  <script src="/static/js/common/bootstrap.min.js"></script>
+  <script src="/static/js/common/jQuery.print.min.js"></script>
+  <script src="/static/js/common/iziToast.min.js"></script>
+  <script src="/static/js/common/arttemplate-3.0.1.js"></script>
+</head>
+<body>
+  <div class="page-content">
+    <div class="page-breadcrumb">
+      <ol class="breadcrumb">
+        <li>您当前的位置：</li>
+        <li>互评分数表</li>
+      </ol>
+    </div>
+    <div class="container">
+      <div class="pt-row clearfix">
+        <div class="query-item">
+          选择小组：
+          <select id="changeGroup" class="form-control search-select">
+            <option value="考核一组（干部组）">考核一组（干部组）</option>
+            <option value="考核二组">考核二组</option>
+          </select>
+        </div>
+        <div class="pull-right">
+          <button id="printBtn" type="button" class="btn btn-primary">打印</button>
+        </div>
+      </div>
+      
+      <div id="scoreTable" class="table-list"></div>
+    </div>
+  </div>
+
+
+<script id="scoreData" type="text/html">
+  <h3 id="scoreTitle" class="score-title">{{title}}</h3>
+  <div class="table-responsive">
+    <table id="tableList" class="table table-bordered">
+      <thead>
+        <tr>
+          <th width="100">考核组</th>
+          <th width="100">姓名</th>
+          {{each list as user i}}
+            <th width="100">{{user.name}}</th>
+          {{/each}}
+          <th width="80">自评10%</th>
+          <th width="80">互评25%</th>
+          <th width="100">部门主管20%</th>
+          <th width="100">考核小组组长45%</th>
+          <th width="100">总分数</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{each list as user}}
+          <tr>
+            {{if $index == 0}}
+            <td rowspan="{{list.length}}">{{groupName}}</td>
+            {{/if}}
+            <td>{{user.name}}</td>
+            {{each list as user2}}
+              <td></td>
+            {{/each}}
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</script>
+<script>
+$(function(){
+  //选择组
+  $('#changeGroup').on('change',function(){
+    var val = $(this).val();
+    if(val == '考核一组（干部组）'){
+      var data = {
+        title: '2016-2017学年度国资中心考核 互评分数表',
+        groupName: '考核一组',
+        list: [
+          {
+            name: '刘念',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 0,
+            total: 100,
+            rank: 1
+          },
+          {
+            name: '闻伟',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 1,
+            total: 99,
+            rank: 2
+          }
+        ]
+      }
+      var html = template("scoreData",data);
+    }
+    if(val == '考核二组'){
+      var data = {
+        title: '2016-2017学年度国资中心考核 互评分数表',
+        groupName: '考核二组',
+        list: [
+          {
+            name: '冯福顺1',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺2',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺3',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺4',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺5',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺6',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺7',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺8',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺9',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺10',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺11',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺12',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺13',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺14',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺15',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '冯福顺16',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺17',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺18',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          },
+          {
+            name: '冯福顺19',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          }
+        ]
+      }
+      var html = template("scoreData",data);
+    }
+
+    $('#scoreTable').html(html);
+  });
+  $('#changeGroup').trigger('change');
+
+  //打印
+  $('#printBtn').on('click',function(){
+    $('#tableList').print();
+  });
+
+});
+</script>
+</body>
+</html>

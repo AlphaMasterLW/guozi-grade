@@ -1,0 +1,54 @@
+
+body {
+  font-family: "微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #999;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #777;
+  font-weight: 300;
+}
+a {
+  color: #52b6ec;
+  -webkit-transition: 300ms;
+  -moz-transition: 300ms;
+  -o-transition: 300ms;
+  transition: 300ms;
+}
+.btn {
+  font-weight: 300;
+  border: 0;
+}
+.btn.btn-primary {
+  background-color: #52b6ec;
+}
+.btn.btn-primary:hover,
+.btn.btn-primary.active {
+  background-color: #1586c3;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+a:hover,
+a:focus {
+  color: #80c9f1;
+  text-decoration: none;
+  outline: none;
+}
+.main{
+  padding-top: 200px;
+  height: 900px;
+  background: url(../../images/common/error_bg.jpg) no-repeat center top;
+  text-align: center;
+}
+.error-code{
+  font-size: 200px;
+}
+.error-text{
+  font-size: 24px;
+}

@@ -1,0 +1,95 @@
+body{
+    word-wrap:break-word;
+    word-break:break-all;
+  }
+  .modal-backdrop{
+    background-color: transparent;
+  }
+  .modal-footer{
+    text-align: center;
+  }
+  .ok-btn{
+      background: #63ba4f;
+      color: #fff;
+  }
+  .cancel-btn{
+      background: #ccc;
+      color: #fff;
+  }
+  .def-btn{
+      background: #63ba4f;
+      color: #fff;
+  }
+  .ok-btn:hover,
+  .ok-btn:focus,
+  .def-btn:hover,
+  .def-btn:focus{
+      background: #63ba4f;
+      color: #fff;
+  }
+  .cancel-btn:hover,
+  .cancel-btn:focus{
+      background: #ccc;
+      color: #fff;
+  }
+  iframe{
+    display: block;
+    border: 0;
+  }
+  .datetimepicker td, .datetimepicker th {
+    width: 30px;
+    height: 30px;
+  }
+  input[type=file].form-control{
+    height: 40px;
+  }
+  
+  .page-user{
+    float: left;
+    width: 20%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 56px;
+  }
+  .user-list{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+  .user-group{
+  
+  }
+  .user-group + .user-group{
+    margin-top: 20px;
+  }
+  .user-group-title{
+    padding: 5px;
+    background: #eee;
+    cursor: pointer;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  .user-group-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .user-group-list li{
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  .user-group-list li:hover{
+    background: #f0f0f0;
+  }
+  .page-score{
+    float: left;
+    width: 80%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 40px;
+  }
+  .table-list th, .table-list td {
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle !important;
+  }

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="renderer" content="webkit">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <title>朝阳区教育国有资产管理中心职工考核</title>
+  <link rel="shortcut icon" href="/static/images/common/favicon.ico">
+  <link href="/static/css/common/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/common/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/css/common/iziToast.min.css" rel="stylesheet">
+  <link href="/static/css/admin.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+	<script>alert('您的浏览器版本过低，请使用谷歌、火狐、或最新版浏览器')</script>
+	<![endif]-->
+  <script src="/static/js/common/jquery.min.js"></script>
+  <script src="/static/js/common/bootstrap.min.js"></script>
+  <script src="/static/js/common/formValidation.min.js"></script>
+  <script src="/static/js/common/iziToast.min.js"></script>
+  <script src="/static/js/common/util.js"></script>
+</head>
+
+<body>
+  <!-- 头部 -->
+  <div id="header" class="header">
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="logo">
+          <a href="/static/html/admin.html">
+            <img src="/static/images/common/logo.png">朝阳区教育国有资产管理中心职工考核</a>
+        </div>
+        <ul class="nav-wrap clearfix">
+          <li>
+            <a href="javascript:;" data-toggle="modal" data-target="#modalResetPwd">
+              <i class="fa fa-user"></i>用户：admin</a>
+          </li>
+          <li>
+            <a href="/static/html/admin.html">
+              <i class="fa fa-home"></i>首页</a>
+          </li>
+          <li>
+            <a href="/static/html/login.html">
+              <i class="fa fa-power-off"></i>退出</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div id="main" class="main">
+    <div id="page" class="page">
+      <div id="pageMark" class="page-mark"></div>
+      <iframe id="pageIframe" name="pageIframe" src="/static/html/home.html" frameborder="0" width="100%"></iframe>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div id="footer" class="footer">
+    <div class="copyright">
+      <span class="company">版权所有：朝阳区教育国有资产管理中心 2016. © All Rights Reserved.</span>
+      <span>技术支持：北京泓业五方科技发展有限公司</span>
+    </div>
+  </div>
+
+  <!-- 设置密码 -->
+  <div class="modal" id="modalResetPwd" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="resetPwdForm" class="form-horizontal">
+          <div class="modal-header clearfix">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">修改密码</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="control-label col-sm-3">
+                <span class="text-danger">*</span>原密码：</label>
+              <div class="col-sm-8">
+                <input id="oldPwd" class="form-control" type="password" name="oldPwd">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3">
+                <span class="text-danger">*</span>新密码：</label>
+              <div class="col-sm-8">
+                <input id="newPwd" class="form-control" type="password" name="newPwd">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3">
+                <span class="text-danger">*</span>确认密码：</label>
+              <div class="col-sm-8">
+                <input id="newPwd2" class="form-control" type="password" name="newPwd2">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">确认</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function resizeIframe() {
+      var h = $(window).height();
+      var headerHeight = $('#header').outerHeight();
+      var footerHeight = $('#footer').outerHeight();
+      h = h - headerHeight - footerHeight;
+      $('#pageIframe').css('height', h);
+    }
+    resizeIframe();
+    $(window).on('resize', resizeIframe);
+  </script>
+  <script type="text/javascript">
+    $(function () {
+      //新密码
+      $('#newPwd').on('keyup', function () {
+        $("#resetPwdForm").formValidation('revalidateField', 'newPwd2');
+      });
+
+      //修改密码弹窗--消失
+      $('#modalResetPwd').on('hide.bs.modal', function () {
+        $("#resetPwdForm").data('formValidation').resetForm();
+      });
+      $('#modalResetPwd').on('hidden.bs.modal', function () {
+        $('#resetPwdForm input').val('');
+      });
+
+      //修改密码表单
+      $("#resetPwdForm").formValidation({
+        icon: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+          oldPwd: {
+            validators: {
+              notEmpty: {
+                message: '请输入原密码'
+              }
+            }
+          },
+          newPwd: {
+            validators: {
+              notEmpty: {
+                message: '请输入新密码'
+              }
+            }
+          },
+          newPwd2: {
+            validators: {
+              notEmpty: {
+                message: '请输入确认密码'
+              },
+              callback: {
+                message: '新密码输入不一致',
+                callback: function () {
+                  var newPwd = $('#newPwd').val();
+                  var newPwd2 = $('#newPwd2').val();
+                  return newPwd == newPwd2 ? true : false;
+                }
+              }
+            }
+          }
+        }
+      }).on('success.form.fv', function (e) {
+        e.preventDefault();
+
+        var $form = $(e.target),
+          $button = $form.data('formValidation').getSubmitButton();
+
+        //点击submit按钮
+        if ($button) {
+          $('#modalResetPwd').modal('hide');
+          iziToast.success({
+            title: '成功：',
+            message: '完成任务',
+            pauseOnHover: false,
+            position: 'topCenter',
+            onClosed: function () {
+              window.location.reload();
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

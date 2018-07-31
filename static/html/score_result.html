@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>考核结果</title>
+	<link rel="shortcut icon" href="/static/images/common/favicon.ico">
+	<link href="/static/css/common/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/common/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/css/common/iziToast.min.css" rel="stylesheet">
+	<link href="/static/css/score_result.css" rel="stylesheet">
+	<script src="/static/js/common/jquery.min.js"></script>
+  <script src="/static/js/common/bootstrap.min.js"></script>
+  <script src="/static/js/common/jQuery.print.min.js"></script>
+  <script src="/static/js/common/iziToast.min.js"></script>
+  <script src="/static/js/common/arttemplate-3.0.1.js"></script>
+</head>
+<body>
+  <div class="page-content">
+    <div class="page-breadcrumb">
+      <ol class="breadcrumb">
+        <li>您当前的位置：</li>
+        <li>考核结果</li>
+      </ol>
+    </div>
+    <div class="container">
+      <div class="pt-row clearfix">
+        <div class="query-item">
+          选择小组：
+          <select id="changeGroup" class="form-control search-select">
+            <option value="考核一组（干部组）">考核一组（干部组）</option>
+            <option value="考核二组">考核二组</option>
+          </select>
+        </div>
+        <div class="pull-right">
+          <button id="printBtn" type="button" class="btn btn-primary">打印</button>
+        </div>
+      </div>
+      
+      <div id="scoreTable" class="table-list"></div>
+    </div>
+  </div>
+
+
+<script id="scoreData" type="text/html">
+  <div class="table-responsive">
+    <table id="tableList" class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="8"><h4>{{title}}</h4></th>
+        </tr>
+        <tr>
+          <th width="50">姓名</th>
+          <th width="80">自评10%</th>
+          <th width="80">互评30%</th>
+          <th width="100">部门主管30%</th>
+          <th width="100">考核小组组长30%</th>
+          <th width="80">考勤扣分</th>
+          <th width="80">总分成绩</th>
+          <th width="100">考核小组内排名</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{each list as user i}}
+          <tr>
+            <td>{{user.name}}{{i}}</td>
+            <td>{{user.zp}}</td>
+            <td>{{user.hp}}</td>
+            <td>{{user.bumen}}</td>
+            <td>{{user.group}}</td>
+            <td>{{user.kq}}</td>
+            <td>{{user.total}}</td>
+            <td>{{user.rank}}</td>
+          </tr>
+        {{/each}}
+        <tr>
+          <td colspan="8">
+            <span class="pull-left">考核小组签字：</span>
+            <span class="pull-right" style="padding-right:200px;">日期：</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</script>
+<script>
+$(function(){
+  //选择组
+  $('#changeGroup').on('change',function(){
+    var val = $(this).val();
+    if(val == '考核一组（干部组）'){
+      var data = {
+        title: '2017-2018学年度朝阳教育信息网络中心考核一组考核结果',
+        list: [
+          {
+            name: '刘念',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 0,
+            total: 100,
+            rank: 1
+          },
+          {
+            name: '闻伟',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 1,
+            total: 99,
+            rank: 2
+          }
+        ]
+      }
+      var html = template("scoreData",data);
+    }
+    if(val == '考核二组'){
+      var data = {
+        title: '2017-2018学年度朝阳教育信息网络中心考核二组考核结果',
+        list: [
+          {
+            name: '冯福顺',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 10,
+            total: 90,
+            rank: 1
+          },
+          {
+            name: '王旭琳',
+            zp: 10,
+            hp: 30,
+            bumen: 30,
+            group: 30,
+            kq: 20,
+            total: 80,
+            rank: 2
+          }
+        ]
+      }
+      var html = template("scoreData",data);
+    }
+
+    $('#scoreTable').html(html);
+  });
+  $('#changeGroup').trigger('change');
+
+  //打印
+  $('#printBtn').on('click',function(){
+    $('#scoreTable').print();
+  });
+
+});
+</script>
+</body>
+</html>

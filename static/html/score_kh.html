@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>考核评分表</title>
+	<link rel="shortcut icon" href="/static/images/common/favicon.ico">
+	<link href="/static/css/common/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/common/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/css/common/iziToast.min.css" rel="stylesheet">
+	<link href="/static/css/score_kh.css" rel="stylesheet">
+	<script src="/static/js/common/jquery.min.js"></script>
+  <script src="/static/js/common/bootstrap.min.js"></script>
+  <script src="/static/js/common/jQuery.print.min.js"></script>
+  <script src="/static/js/common/iziToast.min.js"></script>
+  <script src="/static/js/common/arttemplate-3.0.1.js"></script>
+</head>
+<body>
+  <div class="page-content">
+    <div class="page-breadcrumb">
+      <ol class="breadcrumb">
+        <li>您当前的位置：</li>
+        <li>考核评分表</li>
+      </ol>
+    </div>
+    <div class="container">
+      <div class="pt-row clearfix">
+        <div class="query-item">
+          选择小组：
+          <select id="changeGroup" class="form-control search-select">
+            <option value="考核一组（干部组）">考核一组（干部组）</option>
+            <option value="考核二组">考核二组</option>
+          </select>
+        </div>
+        <div class="pull-right">
+          <button id="printBtn" type="button" class="btn btn-primary">打印</button>
+        </div>
+      </div>
+      
+      <div id="scoreTable" class="table-list"></div>
+    </div>
+  </div>
+
+
+<script id="scoreData" type="text/html">
+  <h3 id="scoreTitle" class="score-title">{{title}}</h3>
+  <div class="table-responsive">
+    <table id="tableList" class="table table-bordered">
+      <thead>
+        <tr>
+          <th rowspan="2" class="t-th">
+            <div class="t-line"></div>
+            <span class="t1">考核标准</span>
+            <span class="t2">参评人员</span>
+          </th>
+          <th colspan="3">德（15分）</th>
+          <th colspan="2">能（20分）</th>
+          <th colspan="3">勤（15分）</th>
+          <th colspan="4">绩（40分）</th>
+          <th colspan="2">廉（10分）</th>
+          <th rowspan="2">自评总分成绩</th>
+          <th rowspan="2">互评总分成绩</th>
+        </tr>
+        <tr>
+          {{each eva as value}}
+            <th>{{value}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{each list as user i}}
+          <tr>
+            <td>{{user.name}}</td>
+            <td>{{user.de1}}</td>
+            <td>{{user.de2}}</td>
+            <td>{{user.de3}}</td>
+            <td>{{user.neng1}}</td>
+            <td>{{user.neng2}}</td>
+            <td>{{user.qin1}}</td>
+            <td>{{user.qin2}}</td>
+            <td>{{user.qin3}}</td>
+            <td>{{user.ji1}}</td>
+            <td>{{user.ji2}}</td>
+            <td>{{user.ji3}}</td>
+            <td>{{user.ji4}}</td>
+            <td>{{user.lian1}}</td>
+            <td>{{user.lian2}}</td>
+            <td>{{user.totalZp}}</td>
+            <td>{{user.totalHp}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</script>
+<script>
+$(function(){
+  //选择组
+  $('#changeGroup').on('change',function(){
+    var val = $(this).val();
+    if(val == '考核一组（干部组）'){
+      var data = {
+        title: '2017-2018学年度国资中心考核一组（干部组）评分表',
+        eva: ['思想觉悟5分','职业道德5分','团结协作5分','工作能力10分','创新能力10分','工作量5分','工作态度5分','工作作风5分','计划组织10分','指导督促10分','工作效果15分','工作成绩5分','党风廉政5分','廉洁从业5分'],
+        list: [
+          {
+            name: '刘念',
+            de1: 5,
+            de2: 5,
+            de3: 5,
+            neng1: 10,
+            neng2: 10,
+            qin1: 5,
+            qin2: 5,
+            qin3: 5,
+            ji1: 10,
+            ji2: 10,
+            ji3: 15,
+            ji4: 5,
+            lian1: 5,
+            lian2: 5,
+            totalZp: 100,
+            totalHp: 100
+          },
+          {
+            name: '闻伟',
+            de1: 5,
+            de2: 5,
+            de3: 5,
+            neng1: 10,
+            neng2: 10,
+            qin1: 5,
+            qin2: 5,
+            qin3: 5,
+            ji1: 10,
+            ji2: 10,
+            ji3: 15,
+            ji4: 5,
+            lian1: 5,
+            lian2: 5,
+            totalZp: 100,
+            totalHp: 100
+          }
+        ]
+      }
+      var html = template("scoreData",data);
+    }
+    if(val == '考核二组'){
+      var data = {
+        title: '2017-2018学年度国资中心考核二组评分表',
+        eva: ['思想觉悟5分','服务意识5分','团结协作5分','工作能力10分','创新能力10分','工作量5分','工作态度5分','工作作风5分','计划组织10分','工作程序10分','工作效果10分','工作成绩10分','党风廉政5分','廉洁从业5分'],
+        list: [
+          {
+            name: '冯福顺',
+            de1: 5,
+            de2: 5,
+            de3: 5,
+            neng1: 10,
+            neng2: 10,
+            qin1: 5,
+            qin2: 5,
+            qin3: 5,
+            ji1: 10,
+            ji2: 10,
+            ji3: 15,
+            ji4: 5,
+            lian1: 5,
+            lian2: 5,
+            totalZp: 100,
+            totalHp: 100
+          },
+          {
+            name: '王旭琳',
+            de1: 5,
+            de2: 5,
+            de3: 5,
+            neng1: 10,
+            neng2: 10,
+            qin1: 5,
+            qin2: 5,
+            qin3: 5,
+            ji1: 10,
+            ji2: 10,
+            ji3: 15,
+            ji4: 5,
+            lian1: 5,
+            lian2: 5,
+            totalZp: 100,
+            totalHp: 100
+          }
+        ]
+      }
+      var html = template("scoreData",data);
+    }
+    $('#scoreTable').html(html);
+  });
+  $('#changeGroup').trigger('change');
+
+  //打印
+  $('#printBtn').on('click',function(){
+    $('#scoreTable').print();
+  });
+
+});
+</script>
+</body>
+</html>

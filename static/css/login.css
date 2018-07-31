@@ -1,0 +1,167 @@
+body{
+  word-wrap:break-word;
+  word-break:break-all;
+}
+.modal-backdrop{
+  background-color: transparent;
+}
+.modal-footer{
+  text-align: center;
+}
+.ok-btn{
+    background: #63ba4f;
+    color: #fff;
+}
+.cancel-btn{
+    background: #ccc;
+    color: #fff;
+}
+.def-btn{
+    background: #63ba4f;
+    color: #fff;
+}
+.ok-btn:hover,
+.ok-btn:focus,
+.def-btn:hover,
+.def-btn:focus{
+    background: #63ba4f;
+    color: #fff;
+}
+.cancel-btn:hover,
+.cancel-btn:focus{
+    background: #ccc;
+    color: #fff;
+}
+iframe{
+  display: block;
+  border: 0;
+}
+.datetimepicker td, .datetimepicker th {
+  width: 30px;
+  height: 30px;
+}
+input[type=file].form-control{
+  height: 40px;
+}
+
+body,html{
+  height: 100%;
+}
+body{
+  background: url(../images/common/loginbg3.png) #1F9AD6 no-repeat center center;
+  position: relative;
+  overflow: hidden;
+}
+
+.container{
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  height: 100%;
+}
+
+.bg-div{
+  width: 470px;
+  height: 420px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -235px;
+  margin-top: -210px;
+}
+
+.form-signin {
+  padding: 40px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin-heading{
+  font-size: 36px;
+  color: #1F9AD6;
+  text-shadow: 1px 1px 3px #1F9AD6;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+.form-signin-subheading{
+  font-size: 22px;
+  color: #1F9AD6;
+  margin-top: 0;
+  padding-left: 10px;
+}
+
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+.form-group{
+  margin-bottom: 16px;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.username{
+  height: 50px;
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-color: #1F9AD6;
+}
+
+.password{
+  height: 50px;
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-color: #1F9AD6;
+}
+
+.form-control-feedback{
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.submit-div{
+  margin-top:32px ;
+}
+
+.btn-login{
+  background: #1F9AD6;
+  color: #fff;
+}
+
+.btn-login:hover,
+.btn-login:focus{
+  color: #fff;
+}
+
+.cloud1{
+  position: absolute;
+  left: 450px;
+  top: 100px;
+  opacity: 0.5;
+}
+
+.cloud2{
+  position: absolute;
+  left: 20px;
+  top: 460px;
+  opacity: 0.5;
+}

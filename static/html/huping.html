@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>互评</title>
+    <link href="/static/css/common/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/common/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/common/iziToast.min.css" rel="stylesheet">
+    <link href="/static/css/huping.css" rel="stylesheet">
+
+    <script src="/static/js/common/jquery.min.js"></script>
+    <script src="/static/js/common/bootstrap.min.js"></script>
+    <script src="/static/js/common/formValidation.min.js"></script>
+    <script src="/static/js/common/util.js"></script>
+    <script src="/static/js/common/iziToast.min.js"></script>
+    <script src="/static/js/common/arttemplate-3.0.1.js"></script>
+</head>
+
+<body>
+
+    <div class="page-content">
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li>您当前的位置：</li>
+                <li>互评</li>
+            </ol>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="page-user">
+                    <div id="userList" class="user-list">
+                         <!-- 此处自行判断删除 第一组是干部组，第二组是普通组-->
+                        <div class="user-group">
+                            <div class="user-group-title">
+                                <i class="fa fa-caret-down"></i> 考核一组（干部组）</div>
+                            <ul class="user-group-list">
+                                <li uid="1" utype="1" class="user-list-li">刘念</li>
+                                <li uid="2" utype="1" class="user-list-li">闻伟</li>
+                                <li uid="3" utype="1" class="user-list-li">王璐</li>
+                                <li uid="4" utype="1" class="user-list-li">周建国</li>
+                                <li uid="5" utype="1" class="user-list-li">彭友雄</li>
+                                <li uid="6" utype="1" class="user-list-li">马宁</li>
+                                <li uid="7" utype="1" class="user-list-li">杜淼</li>
+                                <li uid="8" utype="1" class="user-list-li">宋秀春</li>
+                                <li uid="9" utype="1" class="user-list-li">杨荣宽</li>
+                                <li uid="10" utype="1" class="user-list-li">潘峰</li>
+                                <li uid="11" utype="1" class="user-list-li">侯杨</li>
+                                <li uid="12" utype="1" class="user-list-li">陶京</li>
+                                <li uid="13" utype="1" class="user-list-li">亢鹏宇</li>
+                                <li uid="14" utype="1" class="user-list-li">俞曈</li>
+                                <li uid="15" utype="1" class="user-list-li">付学伟</li>
+                            </ul>
+                        </div>
+                        <div class="user-group">
+                            <div class="user-group-title"><i class="fa fa-caret-down"></i> 考核二组</div>
+                            <ul class="user-group-list">
+                              <li uid="16" utype="0" class="user-list-li">冯福顺</li>
+                              <li uid="17" utype="0" class="user-list-li">王旭林</li>
+                              <li uid="18" utype="0" class="user-list-li">高晓辉</li>
+                              <li uid="19" utype="0" class="user-list-li">张序</li>
+                              <li uid="20" utype="0" class="user-list-li">雷建</li>
+                              <li uid="21" utype="0" class="user-list-li">杨策</li>
+                              <li uid="22" utype="0" class="user-list-li">刘洋</li>
+                              <li uid="23" utype="0" class="user-list-li">李展</li>
+                              <li uid="24" utype="0" class="user-list-li">安康</li>
+                              <li uid="25" utype="0" class="user-list-li">芦艳玲</li>
+                              <li uid="26" utype="0" class="user-list-li">张振卢</li>
+                              <li uid="27" utype="0" class="user-list-li">乐海东</li>
+                              <li uid="28" utype="0" class="user-list-li">黄克非</li>
+                              <li uid="29" utype="0" class="user-list-li">林静</li>
+                              <li uid="30" utype="0" class="user-list-li">周瑾祠</li>
+                              <li uid="31" utype="0" class="user-list-li">李光</li>
+                              <li uid="32" utype="0" class="user-list-li">芮振华</li>
+                              <li uid="33" utype="0" class="user-list-li">毕老久</li>
+                              <li uid="34" utype="0" class="user-list-li">李大川</li>
+                            </ul>
+                          </div>
+                    </div>
+                </div>
+
+                <div class="page-score">
+                    <div class="table-list">
+                        <div class="table-responsive">
+                            <div id="scoreWrap">
+                                <div style="margin-top: 56px;">
+                                    <div class="alert alert-warning" role="alert">
+                                        <i class="fa fa-info-circle"></i> 请先选择小组人员再进行评分
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--page-score结束-->
+
+            </div>
+        </div>
+    </div>
+
+    <script id="ganbu" type="text/html">
+        <h3 class="text-center">2017-2018学年度国资中心干部考核标准</h3>
+        <form action="" id="scoreForm">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td width="200" colspan="2">考核评价项目</td>
+                        <td width="600" rowspan="2">考核评价内容</td>
+                        <td width="150" rowspan="2">评分</td>
+                    </tr>
+                    <tr>
+                        <td>一级指标</td>
+                        <td>二级指标</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            <h5 class="">德</h5>
+                            <span class="">（15分）</span>
+                        </td>
+                        <td>思想觉悟</td>
+                        <td>积极参加中心组织的学习教育、培训活动，注重个人修养。顾全大局讲政治，把握政策找准定位，在群众中具有较高威信。践行国资中心核心价值观。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="de1" name="de1" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>职业道德</td>
+                        <td>正直善良，克己奉公，爱岗敬业，诚实守信，办事公道，服务群众，奉献社会。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="de2" name="de2" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>团结协作</td>
+                        <td>同心同德，团结协作，互相补台。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="de3" name="de3" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">
+                            <h5 class="">能</h5>
+                            <span class="">（20分）</span>
+                        </td>
+                        <td rowspan="2">工作能力</td>
+                        <td>有较强的组织协调能力和对外沟通交往能力，对突发事件有准确判断的能力和妥善处理的能力，处理问题全面厚道。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="neng1" name="neng1" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>清晰准确地把握政策、程序和要点，不折不扣地执行上级下达的任务，工作效率高，确保按时完成任务。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="neng2" name="neng2" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">创新能力</td>
+                        <td>能够采取多种形式主动学习理论知识，管理知识和业务知识，虚心求教，不断提高履职能力，解决工作中遇到的实际问题。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="neng3" name="neng3" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>具有一定的创造性，善于打破常规，常做常新，改进工作。善于整合资源，统筹兼顾，从工作实际出发提出建设性意见和建议。善于应对突发事件等方面的能力。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="neng4" name="neng4" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            <h5 class="">勤</h5>
+                            <span class="">（15分）</span>
+                        </td>
+                        <td>工作量</td>
+                        <td>认真履行岗位职责，工作效果显著，成绩突出，满足服务对象需求，工作服从分配，争挑重担，按规定承担工作量。个人利益服从集体利益，确保各项工作正常运转。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="qin1" name="qin1" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作态度</td>
+                        <td>按时到岗，出勤情况良好，对工作认真负责，积极主动，勤奋敬业。关心单位发展大局，协助主任做好工作。服务热情周到。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="qin2" name="qin2" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作作风</td>
+                        <td>实事求是，联系群众。办事公正，坚持原则，处理问题及时有效。勇于批评和自我批评，敢于承担责任。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="qin3" name="qin3" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">
+                            <h5 class="">绩</h5>
+                            <span class="">（40分）</span>
+                        </td>
+                        <td>计划组织</td>
+                        <td>有清晰的工作思路和计划安排，有阶段性工作总结，肯定成绩及时表扬，对问题有分析有改进。分工明确，组织得当，能够调动职工工作积极性，顺利实施各项工作。（10分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="ji1" name="ji1" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>指导督促</td>
+                        <td>对职工给与帮助和指导，提出建设性和指导性意见。帮助职工协调解决困难，保证工作按时完成。（10分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="ji2" name="ji2" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作效果</td>
+                        <td>圆满完成年初制定的各项目标和任务，完成好各项临时性任务，完成“急难险重”任务情况，对科室、中心稳定与发展的贡献。（15分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="ji3" name="ji3" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作成绩</td>
+                        <td>组织领导本部门工作取得的成绩和荣誉及本人收到的表彰（以证书和奖状为准）。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="ji4" name="ji4" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">
+                            <h5 class="">廉</h5>
+                            <span class="">（10分）</span>
+                        </td>
+                        <td>党风廉政</td>
+                        <td>认真执行党风廉政建设各项规定及工作要求，落实一岗双责。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="lian1" name="lian1" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>廉洁从业</td>
+                        <td>遵守各项法律法规，遵守并严格执行区教委及中心各项规章。廉洁奉公，能够严格要求自己，自觉维护本单位工作人员形象。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input id="lian2" name="lian2" class="form-control score-input" type="text" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">综合评价：德、能、勤、绩、廉（100分）</td>
+                        <td rowspan="2" id="totalPoints">0</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-danger">注：考核等次：合格及以上：75分（含）以上；基本合格：60—74分（含）；不合格：59分以下。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="text-danger text-center">*注：请认真核对评分，一经提交不可修改！</p>
+            <div class="center-block text-center">
+                <button type="submit" class="btn btn-primary">确认评分</button>
+            </div>
+        </form>
+    </script>
+    <script id="zhigong" type="text/html">
+        <h3 class="text-center">2017-2018学年度国资中心职工考核标准</h3>
+        <form action="" id="scoreForm">
+            <table id="tableList" class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td width="200" colspan="2">考核评价项目</td>
+                        <td width="600" rowspan="2">考核评价内容</td>
+                        <td width="150" rowspan="2">评分</td>
+                    </tr>
+                    <tr>
+                        <td>一级指标</td>
+                        <td>二级指标</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            <h5 class="">德</h5>
+                            <span class="">（15分）</span>
+                        </td>
+                        <td>思想觉悟</td>
+                        <td>积极参加中心组织的学习教育、培训活动，注重个人修养。顾全大局讲政治，践行国资中心核心价值观。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="de1" id="de1" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>服务意识</td>
+                        <td>树立为基层服务的观念，有较强的服务意识，基层单位反映良好。热情接待来人来访，言行举止规范得体，及时处理和解决问题。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="de2" id="de2" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>团结协作</td>
+                        <td>团结互助，互敬互谅，讲究合作。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="de3" id="de3" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">
+                            <h5 class="">能</h5>
+                            <span class="">（20分）</span>
+                        </td>
+                        <td rowspan="2">工作能力</td>
+                        <td>业务能力强，能够把握操作流程和关键环节。考虑问题细致周到，对突发事件有一定的判断能力和处理能力。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="neng1" id="neng1" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>立足本岗，善于发现和思考新问题，提出意见和建议。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="neng2" id="neng2" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">创新能力</td>
+                        <td>主动学习本岗业务，参加业务培训，加强工作思考，不断提高业务水平和履职能力。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="neng2" id="neng2" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>能够采取多种形式主动学习理论知识、管理知识和业务知识，虚心求教，不断提高履职能力，解决工作中遇到的实际问题。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="neng3" id="neng3" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            <h5 class="">勤</h5>
+                            <span class="">（15分）</span>
+                        </td>
+                        <td>工作量</td>
+                        <td>服从工作安排，承担岗位工作及组织交办的临时性工作。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="qin1" id="qin1" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作态度</td>
+                        <td>遵守工作纪律及《员工守则》，履行请假手续，遵守作息时间,不迟到、不早退、不串岗、不脱岗，不做与工作无关的事。对工作认真负责，积极主动，勤奋敬业。 （5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="qin2" id="qin2" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作作风</td>
+                        <td>实事求是，办事公正，坚持原则，处理问题及时有效。勇于批评和自我批评，敢于承担责任。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="qin3" id="qin3" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">
+                            <h5 class="">绩</h5>
+                            <span class="">（40分）</span>
+                        </td>
+                        <td>工作质量</td>
+                        <td>在规定时限内积极主动完成工作，做好相关沟通协调工作，效果良好，服务对象满意。（10分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="ji1" id="ji1" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作程序</td>
+                        <td>严格履行规定工作程序及流程，特别在工程洽商、项目变更、租金减免、委托代办等事项杜绝随意性和个人行为。（10分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="ji2" id="ji2" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作效果</td>
+                        <td>圆满完成年初指定的各项目标和任务，完成好各项临时性任务，完成“急难险重”任务情况，对科室、中心稳定与发展的贡献。（10分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="ji3" id="ji3" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作成绩</td>
+                        <td>组织领导本部门工作取得的成绩和荣誉及本人受到的表彰（以证书和奖状为准）。（10分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="ji4" id="ji4" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">
+                            <h5 class="">廉</h5>
+                            <span class="">（10分）</span>
+                        </td>
+                        <td>党风廉政</td>
+                        <td>认真执行党风廉政建设各项规定及工作要求，落实一岗双责。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="lian1" id="lian1" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>廉洁从业</td>
+                        <td>遵守各项法律法规，遵守并严格执行区教委及中心各项规章。廉洁奉公，能够严格要求自己，自觉维护本单位工作人员形象。（5分）</td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control score-input" type="text" name="lian2" id="lian2" placeholder="请输入评分">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">综合评价：德、能、勤、绩、廉（100分）</td>
+                        <td rowspan="2" id="totalPoints">0</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-danger">注：考核等次：合格及以上：75分（含）以上；基本合格：60—74分（含）；不合格：59分以下。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="text-danger text-center">*注：请认真核对评分，一经提交不可修改！</p>
+            <div class="center-block text-center">
+                <button type="submit" class="btn btn-primary">确认评分</button>
+            </div>
+        </form>
+    </script>
+    <script>
+        $(function () {
+            //组折叠
+            $('.user-group-title').on('click', function () {
+                var $i = $(this).find('i');
+                var $userList = $(this).next('.user-group-list');
+                var dis = $userList.css('display');
+                $i.removeClass('fa-caret-down fa-caret-up');
+                if (dis == 'none') {
+                    $i.addClass('fa-caret-down');
+                    $userList.show();
+                } else {
+                    $i.addClass('fa-caret-up');
+                    $userList.hide();
+                }
+            });
+
+            //选择角色
+            $('#userList').on('click', '.user-list-li', function () {
+                var uid = $(this).attr('uid');
+                var utype = $(this).attr('utype');
+                //职工
+                if (utype == 0) {
+                    var html = template("zhigong");
+                }
+                //干部
+                if (utype == 1) {
+                    var html = template("ganbu");
+                }
+                $('#scoreWrap').html(html);
+                bindForm();
+            });
+
+            //总分
+            $('#scoreWrap').on('keyup', '.score-input', function () {
+                var score = 0;
+                $('#scoreWrap').find('.score-input').each(function () {
+                    var val = $(this).val();
+                    val = parseInt(val);
+                    score += isNaN(val) ? 0 : val;
+                });
+                $('#totalPoints').html(score);
+            });
+
+
+            function bindForm() {
+                // 评分表单验证
+                $("#scoreForm").formValidation({
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        de1: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#de1').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        de2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#de2').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        de3: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#de3').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        neng1: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#neng1').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        neng2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#neng2').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        neng3: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#neng3').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        neng4: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#neng4').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        qin1: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#qin1').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        qin2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#qin2').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        qin3: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#qin3').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        ji1: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～10',
+                                    callback: function () {
+                                        var num = $('#ji1').val();
+                                        return (num >= 0 && num <= 10) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        ji2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～10',
+                                    callback: function () {
+                                        var num = $('#ji2').val();
+                                        return (num >= 0 && num <= 10) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        ji3: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～10',
+                                    callback: function () {
+                                        var num = $('#ji3').val();
+                                        return (num >= 0 && num <= 10) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        ji4: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～10',
+                                    callback: function () {
+                                        var num = $('#ji4').val();
+                                        return (num >= 0 && num <= 10) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        lian1: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#lian1').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                        lian2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请输入该项评分'
+                                },
+                                regexp: {
+                                    regexp: '^[1-9]\d*|0$',
+                                    message: '请输入数字'
+                                },
+                                callback: {
+                                    message: '输入的数字范围0～5',
+                                    callback: function () {
+                                        var num = $('#lian2').val();
+                                        return (num >= 0 && num <= 5) ? true : false;
+                                    }
+                                }
+                            }
+                        },
+                    }
+                }).on('success.form.fv', function (e) {
+                    e.preventDefault();
+
+                    var $form = $(e.target),
+                        $button = $form.data('formValidation').getSubmitButton();
+
+                    //点击submit按钮
+                    if ($button) {
+                        iziToast.success({
+                            title: '成功：',
+                            message: '互评成功',
+                            pauseOnHover: false,
+                            position: 'topCenter',
+                            onClosed: function () {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

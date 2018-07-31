@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>首页</title>
+	<link rel="shortcut icon" href="/static/images/common/favicon.ico">
+	<link href="/static/css/common/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/common/font-awesome.min.css" rel="stylesheet">
+	<link href="/static/css/home.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script>alert('您的浏览器版本过低，请使用谷歌、火狐、或最新版浏览器')</script>
+	<![endif]-->
+	<script src="/static/js/common/jquery.min.js"></script>
+  <script src="/static/js/common/bootstrap.min.js"></script>
+  <script src="/static/js/common/util.js"></script>
+</head>
+<body>
+  <div class="page-content">
+    <div class="page-breadcrumb">
+      <ol class="breadcrumb">
+        <li>您当前的位置：</li>
+        <li>首页</li>
+      </ol>
+    </div>
+    <div class="container">
+      <div class="page-panel">
+        <h4 class="page-title text-center">欢迎进行</h4>
+        <h5 class="page-subtitle text-center">朝阳区教育国有资产管理中心干部、职工考核</h5>
+      </div>
+      <div id="navList" class="nav-list">
+        <div class="row" style="margin-bottom: 40px;">
+          <div class="col-sm-3">
+            <div id="navZp" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav1.png"></p>
+              <p class="nav-item-text text-center">自评</p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div id="navHp" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav2.png"></p>
+              <p class="nav-item-text text-center">互评</p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div id="navZg" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav3.png"></p>
+              <p class="nav-item-text text-center">主管评分</p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div id="navWyh" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav4.png"></p>
+              <p class="nav-item-text text-center">考核委员会评分</p>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 40px;">
+          <div class="col-sm-3">
+            <div id="navKh" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav5.png"></p>
+              <p class="nav-item-text text-center">考核评分表</p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div id="navResult" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav6.png"></p>
+              <p class="nav-item-text text-center">考核结果</p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div id="navHpb" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav6.png"></p>
+              <p class="nav-item-text text-center">互评分数表</p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div id="navKhz" class="nav-item">
+              <p class="nav-item-img"><img class="center-block" src="/static/images/common/nav6.png"></p>
+              <p class="nav-item-text text-center">考核小组用</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  提示 -->
+<div class="modal" id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4 class="text-center">没有权限进入该页面</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(function(){
+  var isLead = 1;
+  var isCommn = 1;
+  //自评
+  $('#navZp').on('click',function(){
+    if(isLead == 0){
+      window.location.href = '/static/html/ziping.html';
+    }
+    if(isLead == 1){
+      window.location.href = '/static/html/ziping.html';
+    }
+  });
+  //互评
+  $('#navHp').on('click',function(){
+    if(isLead == 0){
+      window.location.href = '/static/html/huping.html';
+    }
+    if(isLead == 1){
+      window.location.href = '/static/html/huping.html';
+    }
+  });
+  //主管评分
+  $('#navZg').on('click',function(){
+    if(isLead == 0){
+      window.location.href = '/static/html/zhuguan.html';
+    }
+    if(isLead == 1){
+      window.location.href = '/static/html/zhuguan.html';
+    }
+  });
+  //考核委员会评分
+  $('#navWyh').on('click',function(){
+    if(isCommn == 0){
+      $('#modalAlert').modal('show');
+    }
+    if(isCommn == 1){
+      window.location.href = '/static/html/score_wyh.html';
+    }
+  });
+  //考核评分表
+  $('#navKh').on('click',function(){
+    window.location.href = '/static/html/score_kh.html';
+  });
+  //考核结果
+  $('#navResult').on('click',function(){
+    window.location.href = '/static/html/score_result.html';
+  });
+  //互评分数表
+  $('#navHpb').on('click',function(){
+    window.location.href = '/static/html/score_hpb.html';
+  });
+  //考核小组用
+  $('#navKhz').on('click',function(){
+    window.location.href = '/static/html/kaoheSheet.html';
+  });
+  
+});
+</script>
+</body>
+</html>
